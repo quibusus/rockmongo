@@ -144,6 +144,10 @@ class VarEval {
 		date_default_timezone_set($timezone);
 		if ($ret["ok"]) {
 			return $ret["retval"];
+			
+		} elseif( $ret["errmsg"] === "unauthorized" ) {
+			throw new Exception("Unable to parse query, " . $ret["note"] . " use Array query instead");
+		
 		}
 		return false;
 	}
